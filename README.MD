@@ -10,7 +10,29 @@ AI Driver is an inference server for quickly deploying LLM applications that can
 ## 🌟 Features
 - Cloud Based Inference
 - Local Inference (GPU & CPU)
-- Inferences Flows
+- Prebuilt Inference Flows 
+- REST API
+
+## REST API
+API Documentation available at the aidriver endpont. By default this is localhost:28001/docs
+
+![REST API Docs](static/REST.png)
+
+## Flows 
+### Swarm 
+Utilize a customizable number of agents to tackle a problem and agregate a solution
+![Swarm UI](static/SwarmUI.png)
+
+### Retrieval Augmented Generation 
+Pulls information from a vectorstore for improved domain or context knowledge. Supports pinecone and FAISS currently. 
+
+Added logic to discourage hallucination and to be explicit when it doesn't have information on the query.
+
+![RAG](static/RAG.png)
+
+## Chat
+Supports Local or OpenAI Inference. Currently running quantized GGMLs for local inference.
+
 
 ## 🚀 Getting Started
 AI Driver is meant to be run inside of container for easy deployment in any environment. Docker and Docker Compose must be installed in your environment. Cuda drivers are required for GPU support. Drivers should be capable of running cuda 12.x

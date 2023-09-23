@@ -9,7 +9,7 @@ requires = [
 [project]
 description = "AIDriver"
 name = "aidriver"
-version = "0.1.3"
+version = "0.2"
 dynamic = ["dependencies", "optional-dependencies"]
 
 

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg

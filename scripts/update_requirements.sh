@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Compile requirements/requirements for ai_driver
 cd ./ai_driver
 pip-compile requirements/requirements.in --upgrade

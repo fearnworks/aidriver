@@ -11,7 +11,6 @@ AI Driver is an inference server for quickly deploying LLM applications that can
 - Cloud Based Inference
 - Local Inference (GPU & CPU)
 - Inferences Flows
-```
 
 ## 🚀 Getting Started
 AI Driver is meant to be run inside of container for easy deployment in any environment. Docker and Docker Compose must be installed in your environment. Cuda drivers are required for GPU support. Drivers should be capable of running cuda 12.x

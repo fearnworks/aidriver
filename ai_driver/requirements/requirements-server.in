@@ -1,0 +1,17 @@
+uvicorn
+fastapi
+jose
+python-multipart
+pydantic[email]
+pydantic-settings
+Jinja2
+SQLAlchemy
+alembic
+gunicorn
+passlib
+python-jose
+tenacity
+redis
+aioredis
+termcolor
+tiktoken

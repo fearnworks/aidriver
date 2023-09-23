@@ -1,0 +1,4 @@
+pytest
+trio
+pytest-httpx
+pytest-redis

@@ -1,0 +1,21 @@
+RETURN_SOURCE_DOCUMENTS: True
+VECTOR_COUNT: 2
+CHUNK_SIZE: 500
+CHUNK_OVERLAP: 50
+DATA_PATH: '/data'
+DB_PATH: '/vectorstore/db_faiss'
+MODEL_TYPE: 'llama'
+LLM_MODEL_BIN_PATH: '/artifacts/TheBloke_Llama-2-7B-Chat-GGML/llama-2-7b-chat.ggmlv3.q5_0.bin'
+CHAT_EMBED_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'
+INSTRUCT_EMBED_MODEL: 'hkunlp/instructor-xl'
+MAX_NEW_TOKENS: 256
+TEMPERATURE: 0.01
+
+## LANGCHAIN SETTINGS
+LANGSMITH_LOGGING : True
+
+## GGML SETTINGS
+GGML_GPU_LAYERS: 10
+
+## DEV SETTINGS
+LOG_LEVEL: 'info' # 'debug' 'info' 'warning' 'error' 'critical'

@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  ai_driver_redis:
+    image: redis
+    ports:
+      - 26379:26379
+    volumes:
+    - ./redis.conf:/usr/local/etc/redis/redis.conf
+    - /mnt/e/redis-data/aidriver:/data:rw
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - dd-network
+
+  ai_driver: # ai_driver:28001
+    build:
+      context: ./ai_driver
+      dockerfile: Dockerfile
+    container_name: ai_driver
+    ports:
+      - 28001:28001
+    volumes:
+      - ./ai_driver/ai_driver:/code
+      - ./artifacts:/artifacts
+      - ./vectorstore:/vectorstore
+      - ./data:/data
+      # - ~/.cache/huggingface:/home/appuser/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    env_file:
+      - .env
+    networks:
+      - dd-network
+    depends_on:
+      - ai_driver_redis
+  webui:
+    build:
+      context: ./ai_driver
+      dockerfile: webui/Dockerfile
+    container_name: ai_driver_webui
+    ports:
+      - 18000:18000
+    volumes:
+      - ./ai_driver/webui:/code
+    env_file:
+      - .env
+    networks:
+      - dd-network
+    depends_on:
+      - ai_driver
+
+networks:
+  dd-network:
+    external: true

@@ -1,0 +1,6 @@
+openai
+termcolor
+tiktoken
+gradio
+python-dotenv
+loguru

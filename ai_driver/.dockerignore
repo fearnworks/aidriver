@@ -1,0 +1,11 @@
+ai_driver/artifacts
+.git
+.cache
+*.md
+artifacts/
+hkunlp_instructor/
+vectorstore/
+Dockerfile
+.dockerignore
+venv/
+**/__pycache__

@@ -1,0 +1,62 @@
+# .gitignore
+*.zip
+# System files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+*.log
+*.pot
+*.pyc
+
+# Virtual environment
+venv/
+*.venv
+.server_venv/
+venv.bak/
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.iml
+
+# Build artifacts
+build/
+*.class
+
+# Dependency directories
+node_modules/
+
+# Log files
+*.log
+
+# Unit test / coverage reports
+.coverage
+.htmlcov/
+.tox/
+
+# Packaging
+*.tar.gz
+dist/
+# Backup files
+*~
+*.bak
+
+# Other
+*.swp
+*.swo
+
+ai_driver/artifacts/*
+artifacts/*
+ai_driver/hkunlp_instructor-xl
+*.db
+sandbox.ipynb

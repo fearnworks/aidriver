@@ -13,17 +13,13 @@ MODEL_FOLDER=artifacts
 LOCAL_LLM_MODEL=OpenAssistant/llama2-13b-orca-8k-3319
 
 # Langsmith Envs
-LANGCHAIN_TRACING_V2=true
+LANGCHAIN_TRACING_V2=false
 LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
 LANGCHAIN_API_KEY=
 LANGCHAIN_PROJECT=
 
 # Online Search
 SERPAPI_API_KEY=
-
-# PyPi Tokens
-PYPI_TOKEN=
-PYPI_TEST_TOKEN=
 
 ##### Server ENV
 DATABASE_URL=

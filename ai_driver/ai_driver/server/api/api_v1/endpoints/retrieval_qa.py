@@ -18,13 +18,14 @@ from ai_driver.retrieval.qa_config import get_default_qa_config
 router = APIRouter()
 
 
-@router.get("/local_download_pipline")
+@router.post("/local_download_pipeline")
 def local_endpoint(
-    db: Session = Depends(deps.get_db), user: User = Depends(deps.get_current_user)
+    req: schemas.LocalLoaderRequest, db: Session = Depends(deps.get_db), user: User = Depends(deps.get_current_user)
 ):
-    local_download_pipeline(
-        dir_path=server_config.DATA_PATH, embed_model=server_config.INSTRUCT_EMBED_MODEL
+    docs = local_download_pipeline(
+        dir_path=req.directory_path, embed_model=server_config.INSTRUCT_EMBED_MODEL
     )
+    return docs
 
 
 @router.post("/pinecone", status_code=200, response_model=schemas.QABase)

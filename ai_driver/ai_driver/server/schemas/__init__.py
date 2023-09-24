@@ -8,4 +8,4 @@ from .chat import (
     ChatSession,
 )
 from .image import SDEvaluation, SDEvaluations, SDPromptGeneration
-from .qa import QABase, QARequest
+from .qa import QABase, QARequest, LocalLoaderRequest

@@ -28,3 +28,6 @@ ctransformers
 uvicorn
 fastapi
 tiktoken
+unstructured
+markdown
+jq

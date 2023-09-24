@@ -7,6 +7,7 @@ from dotenv import load_dotenv, find_dotenv
 from auth import auth_service
 from swarm_chat import create_swarm_chat_interface
 from chat import create_chat_interface
+from vector_stores import create_local_loader
 from qa import create_qa
 
 load_dotenv(find_dotenv())
@@ -22,6 +23,8 @@ def init_interface():
             interface["swarm_chat"] = create_swarm_chat_interface()
         with gr.Tab("QA"):
             interface["qa"] = create_qa()
+        with gr.Tab("Vector Storage"):
+            interface['vectorstorage'] = create_local_loader()
     ui.queue()
 
     ui.launch(

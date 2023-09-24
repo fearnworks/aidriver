@@ -46,6 +46,15 @@ class PineconeSessionManager:
         self.docsearch: Pinecone = Pinecone.from_existing_index(
             index_name=self.index_name, embedding=embeddings
         )
+    
+    def upload(self, data):
+        """
+        Uploads data to Pinecone.
+
+        Args:
+            data (list): A list of data to upload.
+        """
+        self.index.upsert(data)
 
 
 def get_default_pinecone_session(config: PineconeConfig) -> PineconeSessionManager:

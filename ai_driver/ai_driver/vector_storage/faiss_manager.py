@@ -3,9 +3,7 @@ from typing import Dict, Iterable
 from langchain.vectorstores import FAISS
 import time
 from langchain.schema import Document
-from langchain.embeddings import HuggingFaceInstructEmbeddings
-from langchain.storage import RedisStore
-from langchain.embeddings import CacheBackedEmbeddings
+
 from langchain.embeddings.base import Embeddings
 import ai_driver.vector_storage.local_loader as LocalLoader
 from ai_driver.config import server_config
@@ -16,7 +14,7 @@ def embed_FAISS_from_documents(
     embedding_model_name: str,
     embedding_model_kwargs: Dict,
 ) -> FAISS:
-    embedder = get_cache_embeddings(
+    embedder = LocalLoader.get_cache_embeddings(
         embedding_model_name=embedding_model_name,
         embedding_model_kwargs=embedding_model_kwargs,
     )
@@ -24,21 +22,6 @@ def embed_FAISS_from_documents(
     return vector_store
 
 
-def get_cache_embeddings(
-    embedding_model_name: str, embedding_model_kwargs: Dict[str, str]
-) -> CacheBackedEmbeddings:
-    store = RedisStore(
-        redis_url="redis://ai_driver_redis:26379", namespace="embedding_caches"
-    )
-    underlying_embeddings = HuggingFaceInstructEmbeddings(
-        model_name=embedding_model_name,
-        model_kwargs=embedding_model_kwargs,
-        cache_folder="",
-    )
-    embedder = CacheBackedEmbeddings.from_bytes_store(
-        underlying_embeddings, store, namespace=embedding_model_name
-    )
-    return embedder
 
 
 def get_vector_store(embedder: Embeddings, documents: Iterable[Document] = None):

@@ -12,3 +12,6 @@ class QABase(BaseModel):
 
 class QARequest(BaseModel):
     query: str
+
+class LocalLoaderRequest(BaseModel):
+    directory_path: str

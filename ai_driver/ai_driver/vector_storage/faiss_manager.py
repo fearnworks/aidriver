@@ -21,9 +21,6 @@ def embed_FAISS_from_documents(
     vector_store = get_vector_store(embedder, documents)
     return vector_store
 
-
-
-
 def get_vector_store(embedder: Embeddings, documents: Iterable[Document] = None):
     if documents is None:
         documents = LocalLoader.get_default_local_download(server_config.DATA_PATH)

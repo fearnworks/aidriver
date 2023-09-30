@@ -16,9 +16,6 @@ tdqm
 transformers
 datasets
 jsonlines
-numpy
-scikit_learn
-scipy
 sentence_transformers
 rich
 PyPDF2
@@ -31,3 +28,10 @@ tiktoken
 unstructured
 markdown
 jq
+PyMuPDF
+llama_cpp_python
+llama-hub
+llama-index
+pgvector
+psycopg2-binary 
+asyncpg 

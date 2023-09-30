@@ -17,7 +17,7 @@ RUN groupadd -r appuser && useradd --no-log-init -r -g appuser appuser
 RUN mkdir /app && \
     mkdir -p /home/appuser/.cache && \
     chown -R appuser:appuser /app /home/appuser
-COPY ./requirements/requirements.txt /app/requirements.txt
+COPY ./requirements/requirements.in /app/requirements.txt
 COPY ./requirements/requirements-server.txt /app/requirements-server.txt
 RUN --mount=type=cache,target=~/.cache/pip \
     python3.11 -m pip install -r /app/requirements.txt && \

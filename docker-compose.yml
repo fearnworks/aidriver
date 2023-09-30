@@ -12,6 +12,49 @@ services:
     networks:
       - dd-network
 
+  ai_driver_pg:
+    container_name: ai_driver_pg
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ai_driver
+    ports:
+      - 5432:5432
+    networks:
+      - dd-network
+
+  ai_driver_jupyter:
+    image: jupyter/scipy-notebook:latest
+    container_name: ai_driver_jupyter
+    ports:
+      - 8888:8888
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./.venv:/opt/venv  # Mounting the venv directory
+      - ./scripts/notebook_start.sh:/usr/local/bin/start.sh  
+      - ./ai_driver/ai_driver:/code
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    entrypoint: /bin/bash -c "chmod +x /usr/local/bin/start.sh && /usr/local/bin/start.sh jupyter lab --NotebookApp.custom_display_url=http://127.0.0.1:8888"
+
+    networks:
+      - dd-network
+
+  ai_driver_pg_admin:
+    container_name: ai_driver_pg_admin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root 
+    ports:
+      - 5050:80
+    networks:
+      - dd-network
+
+
   ai_driver: # ai_driver:28001
     build:
       context: ./ai_driver

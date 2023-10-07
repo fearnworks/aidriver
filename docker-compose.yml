@@ -6,7 +6,7 @@ services:
     ports:
       - 26379:26379
     volumes:
-    - ./redis.conf:/usr/local/etc/redis/redis.conf
+    - ./config/redis.conf:/usr/local/etc/redis/redis.conf
     - /mnt/e/redis-data/aidriver:/data:rw
     command: redis-server /usr/local/etc/redis/redis.conf
     networks:
@@ -20,25 +20,12 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: ai_driver
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - 5432:5432
-    networks:
-      - dd-network
-
-  ai_driver_jupyter:
-    image: jupyter/scipy-notebook:latest
-    container_name: ai_driver_jupyter
-    ports:
-      - 8888:8888
     volumes:
-      - ./notebooks:/home/jovyan/work
-      - ./.venv:/opt/venv  # Mounting the venv directory
-      - ./scripts/notebook_start.sh:/usr/local/bin/start.sh  
-      - ./ai_driver/ai_driver:/code
-    environment:
-      - JUPYTER_ENABLE_LAB=yes
-    entrypoint: /bin/bash -c "chmod +x /usr/local/bin/start.sh && /usr/local/bin/start.sh jupyter lab --NotebookApp.custom_display_url=http://127.0.0.1:8888"
-
+      - ./config/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf:rw
+    command: ["postgres", "-c", "config_file=/etc/postgresql.conf"]
     networks:
       - dd-network
 
@@ -96,6 +83,23 @@ services:
       - dd-network
     depends_on:
       - ai_driver
+
+  # ai_driver_jupyter:
+  #   image: jupyter/scipy-notebook:latest
+  #   container_name: ai_driver_jupyter
+  #   ports:
+  #     - 8888:8888
+  #   volumes:
+  #     - ./notebooks:/home/jovyan/work
+  #     - ./.venv:/opt/venv  # Mounting the venv directory
+  #     - ./scripts/notebook_start.sh:/usr/local/bin/start.sh  
+  #     - ./ai_driver/ai_driver:/code
+  #   environment:
+  #     - JUPYTER_ENABLE_LAB=yes
+  #   entrypoint: /bin/bash -c "chmod +x /usr/local/bin/start.sh && /usr/local/bin/start.sh jupyter lab --NotebookApp.custom_display_url=http://127.0.0.1:8888"
+
+  #   networks:
+  #     - dd-network
 
 networks:
   dd-network:

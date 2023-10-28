@@ -26,7 +26,7 @@ def predict(system_msg, inputs, top_p, temperature, chat_counter, chatbot=[], hi
         
     if chat_counter == 0 :
         payload = {
-        "model": model['id'],
+        # "model": model['id'],
         "messages": initial_message , 
         "temperature" : 1.0,
         "top_p":1.0,
@@ -53,7 +53,7 @@ def predict(system_msg, inputs, top_p, temperature, chat_counter, chatbot=[], hi
         messages.append(temp)
         #messages
         payload = {
-        "model": model['id'],
+        # "model": model['id'],
         "messages": messages, # Of the type of [{"role": "user", "content": f"{inputs}"}],
         "temperature" : temperature, #1.0,
         "top_p": top_p, #1.0,

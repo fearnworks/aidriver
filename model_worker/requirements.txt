@@ -1,2 +1,5 @@
 vllm
-fschat
+fschat==0.2.23
+accelerate
+openai
+httpx

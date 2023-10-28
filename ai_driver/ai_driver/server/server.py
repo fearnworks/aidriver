@@ -59,17 +59,18 @@ async def log_request(request: Request, call_next):
 app.add_middleware(LogMiddleware)
 logger.info("LogMiddleware added to the application")
 
+BACKEND_CORS_ORIGINS="[\"http://localhost:28001\",\"http://ai_driver:28001\",\"http://localhost:18001\",\"http://ai_driver:18001\",\"http://localhost:3000\"]"
+
 # Set all CORS enabled origins
-if settings.BACKEND_CORS_ORIGINS:
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
-        allow_origin_regex=settings.BACKEND_CORS_ORIGIN_REGEX,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-    logger.info("CORS middleware added to the application")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
+    allow_origin_regex=settings.BACKEND_CORS_ORIGIN_REGEX,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+logger.info("CORS middleware added to the application")
 
 
 @root_router.get("/", status_code=200)

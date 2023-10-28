@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
-
+from loguru import logger 
 @dataclass
 class ModelPermission:
     id: str
@@ -49,7 +49,6 @@ async def get_models():
             return model_list_response
 
     except httpx.HTTPError as e:
-        print(f"An error occurred while making the request: {e}")
-        logger.info(e.text)
+        logger.info(f"An error occurred while making the request: {e}")
         return None
 

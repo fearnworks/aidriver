@@ -9,9 +9,9 @@ usage() {
 # Initialize variables
 OPENAI=false
 CODE_DEFAULT="TheBloke/Phind-CodeLlama-34B-v2-AWQ"
-SMALL_MODEL_DEFAULT="ehartford/dolphin-2.1-mistral-7b"
+SMALL_MODEL_DEFAULT="TheBloke/Mistral-7B-OpenOrca-AWQ"
 LARGE_MODEL_DEFAULT="TheBloke/Dolphin-2.1-70B-AWQ"
-MODEL_NAME=$CODE_DEFAULT
+MODEL_NAME=$LARGE_MODEL_DEFAULT
 EXTRA_ARGS=""
 
 # Parse command line arguments

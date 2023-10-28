@@ -1,0 +1,6 @@
+models/*
+venv
+.venv
+data/
+docs 
+artifacts

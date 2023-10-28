@@ -47,7 +47,6 @@ fi
 
 # If running in WSL, you might need to use the following:
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib/wsl/lib
-python3.11 -m pip install fschat
 if [ "$OPENAI" = true ]; then
     # Run OpenAI model
     echo "Model:" $MODEL_NAME

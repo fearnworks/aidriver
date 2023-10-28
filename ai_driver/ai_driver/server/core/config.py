@@ -9,7 +9,8 @@ import sys
 
 from dotenv import load_dotenv, find_dotenv
 from ai_driver.server.core.logging import InterceptHandler
-from pydantic import AnyHttpUrl, EmailStr, Field, validator
+from pydantic import AnyHttpUrl, EmailStr, Field
+from pydantic.functional_validators import field_validator
 from pydantic_settings import BaseSettings
 from typing import List, Optional, Union
 
@@ -49,29 +50,6 @@ class Settings(BaseSettings):
 
     # API version
     API_V1_STR: str = "/api/v1"
-
-    # List of origins for CORS (Cross-Origin Resource Sharing)
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:3000"]
-
-    # Origins that match this regex OR are in the above list are allowed
-    BACKEND_CORS_ORIGIN_REGEX: Optional[str]
-
-    @validator("BACKEND_CORS_ORIGINS", pre=True)
-    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
-        """
-        A validator for the CORS origins to ensure that they are in the correct format.
-
-        Args:
-            v (Union[str, List[str]]): The CORS origins, either as a string or a list of strings.
-
-        Returns:
-            Union[List[str], str]: The validated CORS origins.
-        """
-        if isinstance(v, str):
-            return [i.strip() for i in v.split(",")]
-        elif isinstance(v, list):
-            return v
-        raise ValueError(v)
 
     db: DBSettings = DBSettings()
     logging: LoggingSettings = LoggingSettings()

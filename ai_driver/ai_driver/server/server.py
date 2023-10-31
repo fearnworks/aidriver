@@ -64,8 +64,7 @@ BACKEND_CORS_ORIGINS="[\"http://localhost:28001\",\"http://ai_driver:28001\",\"h
 # Set all CORS enabled origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
-    allow_origin_regex=settings.BACKEND_CORS_ORIGIN_REGEX,
+    allow_origins=[str(origin) for origin in BACKEND_CORS_ORIGINS],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,5 +1,6 @@
 #!/bin/bash
-
+python3.11 -m pip install -r ./model_worker/requirements.txt
+python3.11 -m pip install git+https://github.com/vllm-project/vllm.git@main 
 # Function to display usage information
 usage() {
     echo "Usage: $0 [--openai] [-m model_name] [--default (code|small|large)] [additional_args...]"
@@ -11,7 +12,8 @@ OPENAI=false
 CODE_DEFAULT="TheBloke/Phind-CodeLlama-34B-v2-AWQ"
 SMALL_MODEL_DEFAULT="TheBloke/Mistral-7B-OpenOrca-AWQ"
 LARGE_MODEL_DEFAULT="TheBloke/Dolphin-2.1-70B-AWQ"
-MODEL_NAME=$LARGE_MODEL_DEFAULT
+MOE_MODEL_DEFAULT=""
+MODEL_NAME=$CODE_DEFAULT
 EXTRA_ARGS=""
 
 # Parse command line arguments
@@ -52,8 +54,8 @@ if [ "$OPENAI" = true ]; then
     echo "Model:" $MODEL_NAME
     echo "Quant:" $QUANTIZATION_FLAG
     echo "Extra:" $EXTRA_ARGS
-    python3.11 -m vllm.entrypoints.openai.api_server --download-dir /models  --model "$MODEL_NAME" $QUANTIZATION_FLAG $EXTRA_ARGS
+    python3.11 -m vllm.entrypoints.openai.api_server --download-dir /models  --model "$MODEL_NAME" --port 28100 $QUANTIZATION_FLAG $EXTRA_ARGS
 else
     # Run Amazon model
-    python3.11 -m vllm.entrypoints.api_server --download-dir /models  --model "$MODEL_NAME" $QUANTIZATION_FLAG $EXTRA_ARGS 
+    python3.11 -m vllm.entrypoints.api_server --download-dir /models  --model "$MODEL_NAME" --port 28100 $QUANTIZATION_FLAG $EXTRA_ARGS 
 fi

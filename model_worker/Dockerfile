@@ -23,7 +23,9 @@ RUN mkdir /model_worker && \
 COPY ./model_worker/requirements.txt /model_worker/requirements.txt
 
 RUN --mount=type=cache,target=~/.cache/pip \
-    python3.11 -m pip install -r /model_worker/requirements.txt
+    python3.11 -m pip install -r /model_worker/requirements.txt 
+
+# RUN python3.11 -m pip install git+https://github.com/vllm-project/vllm.git@main 
 # # Set working directory to /app
 
 COPY ./model_worker /model_worker

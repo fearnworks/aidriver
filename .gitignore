@@ -61,3 +61,4 @@ ai_driver/hkunlp_instructor-xl
 *.db
 sandbox.ipynb
 models/*
+notebooks/*

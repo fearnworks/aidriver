@@ -1,0 +1,9 @@
+ipykernel
+mypy
+black
+pre-commit
+pip-tools
+loguru
+python-dotenv
+tdqm
+huggingface-hub[cli]

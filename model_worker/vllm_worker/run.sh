@@ -1,6 +1,7 @@
 #!/bin/bash
+source ./model_venv/bin/activate
 python3.11 -m pip install -r ./model_worker/requirements.txt
-python3.11 -m pip install git+https://github.com/vllm-project/vllm.git@main 
+# python3.11 -m pip install git+https://github.com/vllm-project/vllm.git@main 
 # Function to display usage information
 usage() {
     echo "Usage: $0 [--openai] [-m model_name] [--default (code|small|large)] [additional_args...]"
@@ -9,7 +10,7 @@ usage() {
 
 # Initialize variables
 OPENAI=false
-CODE_DEFAULT="TheBloke/Phind-CodeLlama-34B-v2-AWQ"
+CODE_DEFAULT="TheBloke/deepseek-coder-33B-instruct-AWQ"
 SMALL_MODEL_DEFAULT="TheBloke/Mistral-7B-OpenOrca-AWQ"
 LARGE_MODEL_DEFAULT="TheBloke/Dolphin-2.1-70B-AWQ"
 MOE_MODEL_DEFAULT=""

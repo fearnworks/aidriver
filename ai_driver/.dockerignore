@@ -9,3 +9,4 @@ Dockerfile
 .dockerignore
 venv/
 **/__pycache__
+models

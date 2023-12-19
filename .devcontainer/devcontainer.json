@@ -48,7 +48,12 @@
   "forwardPorts": [28001],
   
   "containerEnv": {
-    "HF_HOME": "./models"
+    "HF_HOME": "/models"
   },
-  "postCreateCommand": "pip install -r dev-requirements.txt"
+  "mounts": [
+    "source=${localWorkspaceFolder}/models,target=/models,type=bind"
+  ],
+  "postCreateCommand": [
+    "pip install -r dev-requirements.txt",
+  ],
 }

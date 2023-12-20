@@ -5,19 +5,53 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.11",
       "installTools": true,
+      "version": "3.12"
     },
-    "ghcr.io/devcontainers/features/node:1": "none",
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "version": "lts",
+      "nvmVersion": "latest"
+    },
     "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
-      "ppa": "false"
+      "ppa": true,
+      "version": "os-provided"
     },
     "ghcr.io/devcontainers/features/docker-in-docker:2.7.1": {
       "version": "latest",
       "moby": true
     },
-    "ghcr.io/devcontainers/features/sshd:1": {}
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "installOhMyZshConfig": true,
+      "upgradePackages": true,
+      "username": "automatic",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "azureDnsAutoDetection": true,
+      "installDockerBuildx": true,
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/git-lfs:1": {
+      "autoPull": true,
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/black:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/mypy:2": {
+      "version": "latest"
+    },
+    "ghcr.io/jsburckhardt/devcontainer-features/gitleaks:1": {},
+    "ghcr.io/audacioustux/devcontainers/common-utils-extras:1": {}
   },
   "customizations": {
     "settings": {
@@ -45,7 +79,7 @@
     "--gpus",
     "all",
   ],
-  "forwardPorts": [28001],
+  "forwardPorts": [28100,28001, 26379, 8100, 18001],
   
   "containerEnv": {
     "HF_HOME": "/models"
@@ -55,5 +89,6 @@
   ],
   "postCreateCommand": [
     "pip install -r dev-requirements.txt",
+    "git config --global --add safe.directory /workspaces/aidriver"
   ],
 }
